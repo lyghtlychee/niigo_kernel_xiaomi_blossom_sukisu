@@ -696,6 +696,17 @@ OPT_FLAGS	:= -O3 -ffast-math -march=armv8-a+crc+crypto
 OPT_FLAGS	+= -mtune=cortex-a53
 endif
 
+# Enable fast FMA optimizations
+KBUILD_CFLAGS += -ffp-contract=fast
+# Enable hot cold split optimization
+KBUILD_CFLAGS += -mllvm -hot-cold-split=true
+
+ifdef CONFIG_INLINE_OPTIMIZATION
+KBUILD_CFLAGS	+= -mllvm -inline-threshold=2000
+KBUILD_CFLAGS	+= -mllvm -inlinehint-threshold=3000
+KBUILD_CFLAGS   += -mllvm -unroll-threshold=1200
+endif
+
 KBUILD_CFLAGS	+= $(OPT_FLAGS)
 KBUILD_AFLAGS	+= $(OPT_FLAGS)
 
