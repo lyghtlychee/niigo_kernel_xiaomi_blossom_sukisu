@@ -139,6 +139,7 @@ $(if $(KBUILD_OUTPUT),, \
 PHONY += $(MAKECMDGOALS) sub-make
 
 all_targets := $(strip $(filter-out _all sub-make $(CURDIR)/Makefile, $(MAKECMDGOALS)))
+all_targets := $(filter-out $(space),$(all_targets))
 
 ifneq ($(strip $(all_targets)),)
 $(all_targets): _all sub-make # This is line 144
