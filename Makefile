@@ -141,7 +141,7 @@ PHONY += $(MAKECMDGOALS) sub-make
 all_targets := $(filter-out _all sub-make $(CURDIR)/Makefile, $(MAKECMDGOALS))
 
 ifneq ($(strip $(all_targets)),)
-$(all_targets): _all: sub-make
+$(all_targets): _all sub-make
 	@:
 endif
 
